@@ -28,11 +28,9 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  pwnthenope
 
 # Build settings
-# theme: minima
-remote_theme: pages-themes/hacker@v0.2.0
+theme: jekyll-theme-hacker
 plugins:
   - jekyll-feed
-  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -54,4 +52,3 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 
-theme: jekyll-theme-hacker
