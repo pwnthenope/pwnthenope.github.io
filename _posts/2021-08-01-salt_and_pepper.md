@@ -20,7 +20,7 @@ nc 02.cr.yp.toc.tf 28010 <br> <br>
 
 Source code is provided: <br>
 
-```
+{% highlight python %}
 #!/usr/bin/env python3
 
 from hashlib import md5, sha1
@@ -85,7 +85,7 @@ def main():
 
 if __name__ == '__main__':
 	main()
-```
+{% endhighlight %}
 
 # Analysis
 To get the flag, we need a successful login into the server. <br>
@@ -115,7 +115,7 @@ We found an implementation, along with a detailed explanation, [here](https://gi
 In these cases it's useful to modify the challenge source code to make some local tests first. <br>
 We modify the first lines like that:
 
-```
+{% highlight python %}
 from hashlib import md5, sha1
 import sys
 # from secret import salt, pepper
@@ -129,7 +129,7 @@ assert len(salt) == len(pepper)	== 19
 assert md5(salt).hexdigest() == '7ae4d6728e33ff002bf67a2e5194ccb1'
 # assert sha1(pepper).hexdigest() == '3e0d000a4b0bd712999d730bc331f400221008e0'
 assert sha1(pepper).hexdigest() == '8923ecf3550e9ca6cbb26066590fb619a2d65e71' 
-```
+{% endhighlight %}
 
 <br>
 At this point, we play a little bit with hash_extender from command line to see how it works, and to check if we can forge valid signatures, with some known secrets. <br>
@@ -143,7 +143,7 @@ In both cases, the 'data' (-d) parameter is empty because we have the hashes of 
 <br> <br>
 Now we're ready to present the exploit:
 
-```
+{% highlight python %}
 from pwn import remote, process
 import subprocess
 import re
@@ -192,7 +192,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-```
+{% endhighlight %}
 
 CCTF{Hunters_Killed_82%_More_Wolves_Than_Quota_Allowed_in_Wisconsin}
                                                                                                                                                                                                                                                                                                                                                                                                                                                                              

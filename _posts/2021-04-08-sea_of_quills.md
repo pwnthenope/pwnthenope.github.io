@@ -15,9 +15,9 @@ Category: Web
 
 # Writeup
 It's clearly a SQL injection challenge, source code (Ruby) is provided and we can see that the query is built like that:
-```
+{% highlight ruby %}
 @row = db.execute("select %s from quills limit %s offset %s" % [cols, lim, off])
-```
+{% endhighlight %}
 Where "cols", "lim" and "off" are user provided.
 There is a regex match on the latter two parameters to ensure they are composed by digits.
 We will assume that this regex match works properly and will focus on "cols" parameter.

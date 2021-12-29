@@ -60,7 +60,8 @@ It works both locally and remotely, with both challenges (we solved both challen
 The last thing to do to get the flag is to visit /filter.php within the same session: <br>
 <br> ![flag](https://github.com/pwnthenope/pwnthenope.github.io/blob/main/static/post_images/web_gauntlet_flag.jpg?raw=true) <br>
 We thought it was useful to also add a little script to the writeup: <br>
-```
+
+{% highlight python %}
 import requests
 
 
@@ -72,4 +73,5 @@ if __name__ == "__main__":
     if "Congrats" in r.text:
         r = session.get(base_url + "filter.php")
         print(r.text)
-```
+{% endhighlight %}
+

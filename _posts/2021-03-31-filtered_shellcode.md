@@ -99,7 +99,7 @@ Side Note:
 
 With the remote shell I was able to retrieve the original C code of the challenge:
 
-```
+{% highlight c %}
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -149,4 +149,5 @@ int main(int argc, char *argv[]) {
     execute(buf, length);
     return 0;
 }
-```
+{% endhighlight %}
+

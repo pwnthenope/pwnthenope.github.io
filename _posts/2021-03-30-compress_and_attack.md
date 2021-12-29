@@ -15,7 +15,8 @@ Category: Crypto
 
 # Writeup
 We connect to a TCP service and our goal is to find the flag. Source code is provided: <br>
-```
+
+{% highlight python %}
 #!/usr/bin/python3 -u
 
 import zlib
@@ -49,7 +50,8 @@ def main():
 
 if __name__ == '__main__':
     main() 
-```
+{% endhighlight %}
+
 <br> I added the test flag to make some tests offline. <br>
 We can see that Salsa20 stream cipher is used; it is a cipher for which there don't exist known vulnerabilites. <br>
 The standard way to use that cipher is to concatenate a nonce with the encrypted text, and this is what it's done here. <br>
@@ -82,7 +84,7 @@ Here is a snapshot of the script running, handling that situation: <br>
 <br> ![testing](https://github.com/pwnthenope/pwnthenope.github.io/blob/main/static/post_images/compress_and_attack_script_running.jpg?raw=true) <br>
 And here is the final script: <br>
 
-```
+{% highlight python %}
 from pwn import *
 import string
 
@@ -126,7 +128,7 @@ if __name__ == "__main__":
             found = True
             r.close()
     print("Flag found: {}".format(base[0]))
-```
+{% endhighlight %}
 
 The script should be self-explainatory, ```zlib_oracle``` is a dictionary with user input as key, and ```len(compress(flag + user_input))``` as value. <br> <br>
 picoCTF{sheriff_you_solved_the_crime}

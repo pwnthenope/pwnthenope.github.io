@@ -18,7 +18,7 @@ Being normal is hard these days because of Corona virus pandemic! <br> <br>
 We have source code and a file called output.txt. <br>
 The source code is the following: <br>
 
-```
+{% highlight python %}
 import random
 from flag import FLAG
 
@@ -60,7 +60,7 @@ def encrypt(msg):
 
 enc = encrypt(FLAG)
 print(enc)
-```
+{% endhighlight %}
 
 output.txt contains the "encrypted" flag. <br>
 
@@ -109,7 +109,7 @@ Now we have a list of pairs, that easily become a list of ASCII values, and we o
 
 Here is the script: <br>
 
-```
+{% highlight python %}
 import string
 
 
@@ -166,7 +166,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-```
+{% endhighlight %}
 
 CCTF{H0w_f1Nd_th3_4lL_3I9EnV4Lu35_iN_FiN173_Fi3lD5!???}
  
