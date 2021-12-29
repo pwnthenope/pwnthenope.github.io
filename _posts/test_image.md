@@ -3,6 +3,7 @@ layout: post
 title:  "Test di post con immagine"
 date:   2021-12-29
 categories: writeup
+permalink: /test_image/
 ---
 
 Author: Shotokhan
@@ -12,6 +13,6 @@ category: Web
 
 # Prova immagine
 Vediamo di inserire un'immagine. <br>
-![test image feature](https://github.com/pwnthenope/pwnthenope.github.io/static/post_images/test_image.jpg) <br>
+![test image feature](https://github.com/pwnthenope/pwnthenope.github.io/blob/main/static/post_images/test_image.jpg?raw=true) <br>
 Dunque, se leggete questo testo vicino ad un'immagine, vuol dire che il test è andato a buon fine!
 
