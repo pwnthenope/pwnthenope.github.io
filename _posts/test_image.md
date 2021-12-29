@@ -1,14 +1,16 @@
 ---
 layout: post
 title:  "Test di post con immagine"
-permalink: /test_image/
+date:   2021-12-29 12:28:05 +0100
+categories: writeups
 ---
 
+---
 Author: Shotokhan
 Description: Piccolo test che ha anche una immagine
 CTF: testCTF2021
-category: Web
-date:   2021-12-29
+Category: Web
+---
 
 # Prova immagine
 Vediamo di inserire un'immagine. <br>
