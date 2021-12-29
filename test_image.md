@@ -1,8 +1,6 @@
 ---
 layout: post
 title:  "Test di post con immagine"
-date:   2021-12-29
-categories: writeup
 permalink: /test_image/
 ---
 
@@ -10,6 +8,7 @@ Author: Shotokhan
 Description: Piccolo test che ha anche una immagine
 CTF: testCTF2021
 category: Web
+date:   2021-12-29
 
 # Prova immagine
 Vediamo di inserire un'immagine. <br>
