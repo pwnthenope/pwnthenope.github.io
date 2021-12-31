@@ -5,4 +5,4 @@
 layout: home
 ---
 
-![logo](https://github.com/pwnthenope/pwnthenope.github.io/blob/main/static/logo.jpg?raw=true)
+![logo](https://github.com/pwnthenope/pwnthenope.github.io/blob/main/static/logo.svg?raw=true)
