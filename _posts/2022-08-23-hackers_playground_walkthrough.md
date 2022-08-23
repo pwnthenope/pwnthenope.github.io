@@ -109,8 +109,8 @@ system | ret_addr | buf_in_bss
 ```
 
 We can put an arbitrary ```ret_addr``` after system: if it's called correctly, the new program will replace the running one in the process context. <br>
-We choose to use ```buf_in_bss``` as parameter for the system because it's easier to write a string there. <br>
-To write there, we can re-use ```r``` function, by passing as first parameter ```buf_in_bss```, as second parameter the length of our program's name (which will ```/bin/sh```, so we can pass 7 or 8 as length), and 0 as third parameter, like that:
+We choose to use ```buf_in_bss``` as parameter for the ```system``` function because it's easier to write a string there. <br>
+To write there, we can re-use ```r``` function, by passing as first parameter ```buf_in_bss```, as second parameter the length of our program's name (which will be ```/bin/sh```, so we can pass 7 or 8 as length), and 0 as third parameter, like that:
 
 ```
 r | ret_addr | buf_in_bss | 8 | 0
@@ -366,7 +366,7 @@ Please find minimum and maximum values of y while x is in the given range.
 For your convinience, equations are designed to have integer solutions.
 You should pass 30 rounds in 60 seconds.
 
-Click the buttion when you're ready. 
+Click the button when you're ready. 
 ```
 
 After clicking ```Start``` button, we have the first equation, something like:
@@ -434,7 +434,7 @@ print('\nFlag:', search('SCTF\{.*\}', text)[0])
 
 {% endhighlight %}
 
-This approach, here is the flag:
+This approach worked, here is the flag:
 
 ```
 SCTF{I_w4nt_t0_l1v3_in_a_wOrld_w1thout_MATH}
@@ -456,15 +456,15 @@ Points: 139
 
 The objective is to get the certificate by completing the courses and using the certificate to leak some secrets.
 
-1) To get the certificate we first start a course and then finish it using a negative "rate" (we out -2000). This is done with POST requests to ```/status```, first with attribute ```{"action":"start"}```, and then ```{"action":"finish", "rate":-2000}```. Repeat this 3 times to finish all courses.
-2) To leak info from the certificate we use a SSTI using as email:
+1. To get the certificate we first start a course and then finish it using a negative "rate" (we out -2000). This is done with POST requests to ```/status```, first with attribute ```{"action":"start"}```, and then ```{"action":"finish", "rate":-2000}```. Repeat this 3 times to finish all courses.
+2. To leak info from the certificate we use a SSTI using as email:
 
 ```
 test@test.com<iframe src='file:///home/app/config.py'></iframe>
 ```
 
 This will put ```config.py``` content inside the certificate pdf. <br>
-From the leak, we take the ```secret_key``` and craft a custom cookie with [jwt.io]('jwt.io'), writing:
+From the leak, we take the ```secret_key``` and craft a custom cookie with [jwt.io](https://jwt.io/), writing:
 
 {% highlight json %}
 {
@@ -536,7 +536,7 @@ Points: 142
 > Server2: http://jwtdecoder.sstf.site:8080
 > Download: jwt_decoder.zip
 
-The service enables to modify a JWT client-side, sets it as cookie and sends it to the server, which renders a template with fields from the JWT. <br>
+The service enables to modify a JWT client-side, set it as cookie and send it to the server, which renders a template with fields from the JWT. <br>
 Source code is provided, as well as package versions, Dockerfile and so on. <br>
 If we build the container image locally, we get warning for a critical vulnerability from ```npm audit```, about the package ```ejs```. <br>
 These are the dependencies:
