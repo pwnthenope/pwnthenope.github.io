@@ -25,11 +25,13 @@ Members of the team:
 - [zP3P](https://ctftime.org/user/107362), from July 2021 to July 2023, former member.
 - [_vX](https://ctftime.org/user/107466), from July 2021 to July 2023, former member.
 - [SirFrigo](https://ctftime.org/user/138685), from July 2022, active.
-- [0xDark](https://ctftime.org/user/138691), from July 2022, active.
+- [0xMatte](https://ctftime.org/user/138691), from July 2022, active.
 - [AleDecre](https://ctftime.org/user/138692), from July 2022, active.
 - [Dralute](https://ctftime.org/user/138693), from July 2022, active.
 - [daloski](https://ctftime.org/user/138696), from July 2022, active.
 - [LL3006](https://ctftime.org/user/138703), from July 2022, active.
+- `basilefr`, from July 2023, active.
+- `Frollo`, from July 2023, active.
 
 
 Our team on CTFTime:
