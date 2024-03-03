@@ -16,6 +16,5 @@ Category: Crypto
 <object data="https://github.com/pwnthenope/pwnthenope.github.io/blob/main/static/post_images/to_the_moon_maths_pwnthenope.pdf?raw=true" type="application/pdf">
     <embed src="https://github.com/pwnthenope/pwnthenope.github.io/blob/main/static/post_images/to_the_moon_maths_pwnthenope.pdf?raw=true">
         <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/pwnthenope/pwnthenope.github.io/blob/main/static/post_images/to_the_moon_maths_pwnthenope.pdf?raw=true">Download PDF</a>.</p>
-    </embed>
 </object>
 
